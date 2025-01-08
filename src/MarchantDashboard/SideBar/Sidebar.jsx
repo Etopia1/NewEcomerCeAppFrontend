@@ -2,11 +2,13 @@ import React from 'react';
 import { useState } from 'react';
 import { FaHome, FaUserAlt, FaCog, FaBars } from 'react-icons/fa';
 import { useNavigate } from 'react-router-dom';
-
+import { clearMarchant } from '../../components/Global/Slice';
+import { useDispatch } from 'react-redux';
 const Sidebar = () => {
   const Nav = useNavigate()
-  const HandleNav = () =>{
-    Nav('/home')
+  const dispatch = useDispatch()
+  const handlelogout = () =>{
+    dispatch(clearMarchant())
   }
   // const [isOpen, setIsOpen] = useState(false);
 
@@ -32,7 +34,7 @@ const Sidebar = () => {
         </div>
         <nav className="mt-4">
           <ul>
-            <li className="px-4 py-3 hover:bg-blue-700" onClick={()=> Nav('./home')}>
+            <li className="px-4 py-3 hover:bg-blue-700" onClick={()=> Nav('./marchatHome')}>
                 <FaHome    size={18} />
                 <span>Home</span>
               
@@ -45,15 +47,15 @@ const Sidebar = () => {
                 <FaUserAlt size={18} />
                 <span>Products</span>
             </li>
-            <li className="px-4 py-3 hover:bg-blue-700" onClick={()=> Nav('')}>
+            <li className="px-4 py-3 hover:bg-blue-700" >
                 <FaUserAlt size={18} />
                 <span>Profile</span>
             </li>
-            <li className="px-4 py-3 hover:bg-blue-700">
-              <a href="#" className="flex items-center gap-3">
+            <li onClick={handlelogout} className="px-4 py-3 hover:bg-blue-700">
+              <p className="flex items-center gap-3">
                 <FaCog size={18} />
                 <span>Settings</span>
-              </a>
+              </p>
             </li>
           </ul>
         </nav>

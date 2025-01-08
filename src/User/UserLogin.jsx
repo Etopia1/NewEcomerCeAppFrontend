@@ -26,6 +26,9 @@ const UserLogin = () => {
       console.log('Login successful:', response.data);
       setSuccessMessage('Login successful. Redirecting...');
       setError('');
+      setTimeout(()=>(
+        navigate("/")
+      ), 2000)
     //  if(response.data)
       // Redirect to the dashboard or another page
       // navigate('/Marchanthome');

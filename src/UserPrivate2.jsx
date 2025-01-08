@@ -6,21 +6,16 @@ import Navbar from './components/Navbar/Navbar'
 import Header from './MarchantDashboard/Pages/HomePage/Header'
 import { useSelector } from 'react-redux'
 
-const UserPrivateRoute = () => {
-  const token = useSelector((state)=> state.token)
+const UserPrivate2 = () => {
   return (
     <>
-
-
 <Header/>  
-{
-  token ?  <Outlet/> : <Navigate to='/'/>
-}
+  <Outlet/> 
+
  
 <Footer/>
-     
     </>
   )
 }
 
-export default UserPrivateRoute
+export default UserPrivate2

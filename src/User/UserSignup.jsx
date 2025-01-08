@@ -45,7 +45,7 @@ const UserSignup = () => {
     formData.append('profileImage', profileImage);
 
     try {
-      const response = await axios.post('http://localhost:1900/api/v1/user-signUp', formData, {
+      const response = await axios.post('https://newecomerceappbackend.onrender.com/api/v1/user-signUp', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
       });
 
@@ -167,7 +167,7 @@ const UserSignup = () => {
               : 'bg-indigo-600 hover:bg-indigo-700 focus:ring focus:ring-indigo-300'
           }`}
         >
-          {loading ? <BeatLoader color="#ffffff" size={12} /> : 'Reset Password'}
+          {loading ? <BeatLoader color="#ffffff" size={12} /> : 'Sign Up'}
         </button>
         </div>
 
@@ -175,7 +175,7 @@ const UserSignup = () => {
         <div className="mt-2 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <Link to="/" className="text-indigo-600 hover:underline">
+            <Link to="/Userlogin" className="text-indigo-600 hover:underline">
               Login
             </Link>
           </p>

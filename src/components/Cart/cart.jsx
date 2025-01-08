@@ -911,6 +911,9 @@ import { useSelector } from "react-redux";
 import Header from "../../MarchantDashboard/Header/Header";
 import { FaArrowLeftLong } from "react-icons/fa6";
 import { useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
+import Swal from 'sweetalert2';
+import { ToastContainer } from "react-toastify";
 
 
 const Cart = () => {
@@ -989,25 +992,44 @@ const Cart = () => {
 
           const handleCheckout = async () => {
             setLoading(true);
-            try {
-              const response = await axios.post(
-                'http://localhost:1900/api/v1/checkout', 
-                {},
-                {
-                  headers: {
-                    Authorization: `Bearer ${token}`, // Pass the token to authenticate the user
-                  },
-                }
-              );
-           console.log(response)
-           Nav(`/confirmoreder`)
-              
-            } catch (error) {
-              console.error('Checkout Error:', error);
-              toast.error('An error occurred during checkout');
-            } finally {
-              setLoading(false);
+            if(cartItems.length === 0){
+              Swal.fire({
+                icon: 'error',
+                title: 'Please Add Some Item To Cart',
+                text: 'Your Cart Is Empty.',
+              }); 
+              Nav('/')
+            } else {
+              try {
+                const response = await axios.post(
+                  'http://localhost:1900/api/v1/checkout', 
+                  {},
+                  {
+                    headers: {
+                      Authorization: `Bearer ${token}`, // Pass the token to authenticate the user
+                    },
+                  }
+                );
+             console.log(response)
+             Swal.fire({
+              icon: 'success',
+              title: 'Checked ',
+              text: response.data.message,
+            });
+             setLoading(false)
+             setTimeout(()=>(
+              Nav(`/confirmoreder`)
+
+             ), 2000)
+                
+              } catch (error) {
+                console.error('Checkout Error:', error);
+                toast.error('An error occurred during checkout');
+              } finally {
+                setLoading(false);
+              }
             }
+           
           };
          
   // Sample data for cart items
@@ -1045,7 +1067,7 @@ const Cart = () => {
   const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
   return (
-    <div className="bg-gray-50 relative h-[100vh] flex flex-col">
+    <div className="bg-gray-50 relative md:mb-[2%] mb-[50%] h-[100vh] flex flex-col">
       {/* Top Bar */}
       {/* <header className="bg-black text-white text-sm text-center py-2">
         Summer Sale for All Swim Suits and Accessories - Get 50% Off |{" "}
@@ -1053,7 +1075,7 @@ const Cart = () => {
           Shop Now
         </a>
       </header> */}
-\
+
       {/* Navbar */}
       {/* <nav className="bg-white shadow-md">
         <div className="container mx-auto px-4 flex justify-between items-center py-4">
@@ -1074,6 +1096,9 @@ const Cart = () => {
           </div>
         </div>
       </nav> */}
+        {/* <ToastContainer
+        style={{ zIndex: 99999999999999999999999999999999999999999 }} // Ensure this is higher than the header
+      /> */}
 
       {/* Breadcrumb */}
       <div className="bg-gray-100 py-3">
@@ -1171,8 +1196,11 @@ const Cart = () => {
               >
                 Clear Cart
               </button>
-              <button onClick={handleCheckout} className="bg-red-500 text-white w-full py-3 mt-4 rounded-md">
-                Proceed to Checkout
+              <button onClick={handleCheckout} disabled={loading} className="bg-red-500 text-white w-full py-3 mt-4 rounded-md">
+                
+                {
+                  loading ? "Processing....." : "Proceed to Checkout"
+                }
               </button>
             </div>
           </div>
@@ -1180,7 +1208,7 @@ const Cart = () => {
       </div>
 
       {/* Footer */}
-      <footer className="bg-black text-white py-6">
+      {/* <footer className="bg-black text-white py-6">
         <div className="container mx-auto px-4 flex flex-wrap justify-between text-sm">
           <div className="w-full md:w-1/5 mb-4 md:mb-0">
             <h3 className="font-bold">Exclusive</h3>
@@ -1203,7 +1231,7 @@ const Cart = () => {
             <img src="https://via.placeholder.com/80" alt="QR Code" />
           </div>
         </div>
-      </footer>
+      </footer> */}
     </div>
   );
 };

@@ -107,7 +107,7 @@ const ProductView = () => {
   return (
     <div className="w-[100%] relative h-[100%] flex items-center justify-center p-6">
         {
-            deleteOne ? <div ata-aos="fade-down" className=" absolute h-[100%] w-[100%] bg-[#474646b2]  flex items-center justify-center">
+            deleteOne ? <div data-aos="fade-down" className=" absolute h-[100%] w-[100%] bg-[#474646b2]  flex items-center justify-center">
             <div className=" w-[50%] h-[45%] rounded-[10px] bg-[white] ">
                 <div className="w-[100%] h-[50%] flex items-center justify-center "> <h1>Are You Sure You Want To Delete</h1></div>
                 <div className="  w-[100%] h-[50%] gap-[70px] flex items-center justify-center ">
@@ -198,7 +198,7 @@ const ProductView = () => {
         ) : products ? (
           <div className='w-[70%] h-[100%]   flex items-center justify-center flex-col '>
             <h2 className="text-[30px] h-[30%] items-center flex justify-center font-bold mb-4">{products.productName}</h2>
-            <h2 className="text-[20px] h-[30%] items-center flex justify-center font-bold mb-4"> Price: ${products.productPrice}</h2>
+            <h2 className="text-[20px] h-[30%] items-center flex justify-center font-bold mb-4"> Price: #{products.productPrice}</h2>
             <div className="w-[100%]  h-[50%] flex items-center justify-center">
               <img
                 src={products.productImage || 'https://via.placeholder.com/150'}

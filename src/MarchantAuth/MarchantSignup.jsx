@@ -176,7 +176,7 @@ const MarchantSignup = () => {
         <div className="mt-2 text-center">
           <p className="text-sm text-gray-600">
             Already have an account?{' '}
-            <Link to="/" className="text-indigo-600 hover:underline">
+            <Link to="/marchatlogin" className="text-indigo-600 hover:underline">
               Login
             </Link>
           </p>

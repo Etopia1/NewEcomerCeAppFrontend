@@ -3,6 +3,8 @@ import axios from "axios";
 import { BeatLoader } from "react-spinners";
 import { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import Footer from '../Footer/Footer'
+
 
 const CategoryPage = () => {
   const [categories, setCategories] = useState([]);
@@ -27,6 +29,7 @@ const CategoryPage = () => {
   }, []);
 
   return (
+
     <div className="w-full h-screen bg-[orange] p-6 flex flex-col items-center">
       <h2 className="text-3xl font-bold mb-6">Categories</h2>
 
@@ -84,6 +87,7 @@ const CategoryPage = () => {
 
       <Toaster />
     </div>
+    
   );
 };
 

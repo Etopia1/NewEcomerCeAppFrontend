@@ -36,14 +36,14 @@ const Header = () => {
   };
 
   return (
-    <div className="flex sticky w-[99%] top-[0px] z-[99999999999999999] bottom-0 h-[10%]">
+    <div className="flex sticky w-[99%] top-0 z-1 bottom-0 h-[10%]">
       {/* Sidebar */}
       <aside onClick={()=> setIsSidebarOpen(!isSidebarOpen)}
-        className={`fixed xl:hidden md:flex   h-full w-64 bg-gray-800 text-white transform ${
+        className={`fixed xl:hidden  md:hidden  h-full w-64 bg-[red] text-white transform ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } transition-transform lg:translate-x-0`}
       >
-        <div className="p-4 hid border-b border-gray-700">
+        <div className="p-4 hid border-b  border-gray-700">
           <h1 className="text-xl font-bold">ShopEasy</h1>
         </div>
         <nav className="mt-4 flex flex-col md:w-[100%] bg-[red] h-[100%] items-start justify-center ">

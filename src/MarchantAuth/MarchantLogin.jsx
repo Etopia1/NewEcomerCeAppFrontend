@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { AddmarchantData, AddMarchantId, AddMarchanttoken } from '../components/Global/Slice';
+import { AddmarchantData, AddMarchantId, clearMarchant, AddMarchanttoken } from '../components/Global/Slice';
 
 const MarchantLogin = () => {
   const [email, setEmail] = useState('');
@@ -26,6 +26,9 @@ const MarchantLogin = () => {
       console.log('Login successful:', response.data.data.token);
       setSuccessMessage('Login successful. Redirecting...');
       setError('');
+      setTimeout(()=>(
+        navigate("/marchatHome")
+      ), 2000)
     //  if(response.data)
       // Redirect to the dashboard or another page
       // navigate('/Marchanthome');

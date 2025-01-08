@@ -13,12 +13,12 @@ import MarchantLogin from './MarchantAuth/MarchantLogin'
 import MarchantForgetpassOtp from './MarchantAuth/MarchantForgetpassOtp'
 import MarchantNewPass from './MarchantAuth/MarchantNewPass'
 import DashboardPrivateRoute from './DashboardPrivateRoute'
-import Home from './MarchantDashboard/MainMarchantDashboard/Homepage/Home'
 import Categorypage from './MarchantDashboard/Pages/Categorypage'
 import AOS from "aos";
 import "aos/dist/aos.css";
 import CategoryView from './MarchantDashboard/Pages/CategoryView'
 import ProductPage from './MarchantDashboard/Pages/ProductPage'
+import ProductPage2 from './components/DetailsPage/ProductPage'
 import ProductView from './MarchantDashboard/Pages/ProductView'
 import UserSignup from './User/UserSignup'
 import UserVerifyOtp from './User/UserVerifyOtp'
@@ -32,6 +32,12 @@ import OrderConfirmation from './components/Cart/OrderConfirmation'
 import MerchantOrders from './MarchantDashboard/Pages/MerchantOrders'
 import UserOrderPage from './MarchantDashboard/Pages/UserOrderPage'
 import ViewOrder from './MarchantDashboard/Pages/ViewOrder'
+import HomePage from './MarchantDashboard/Pages/HomePage/HomePage'
+import Home from './MarchantDashboard/MainMarchantDashboard/Homepage/Home'
+import HeroPage2 from './MarchantDashboard/Pages/HomePage/HeroPage2'
+import AboutUs from './MarchantDashboard/Pages/HomePage/AboutUs'
+import Contact from './MarchantDashboard/Pages/HomePage/Contact'
+import UserPrivate2 from './UserPrivate2'
 const RoutePageNew = () => {
   useEffect(() => {
         AOS.init({
@@ -48,12 +54,12 @@ const RoutePageNew = () => {
     <Routes>
         {/* <Route path='/signup'  element={<Signup/>}/> */}
         {/* <Route path='/' element={</>}/> */}
-        <Route path='/ddd' element={<UserLogin/>} />
+        <Route path='/userlogin' element={<UserLogin/>} />
         <Route path='/user-signup' element={<UserSignup/>}/>
         <Route path='/userverifyone/:token' element={<UserVerifyOtp/>}/>
         <Route path='/user-forgetpass' element={<UserForgetPass/>} />
         <Route path='/user-VerifyOtppass/:token'  element={<UserVerifyOtpPass/>} />
-        <Route path='/home2' element={<PrivaRoue/>}/>
+        <Route path='/' element={<PrivaRoue/>}/>
         <Route path='/marchantlogin' element={<MarchantLogin/>}/>
         <Route path='/marchant-signup' element={<MarchantSignup/>}/>
         <Route path='/marchant-verifyotp/:token' element={<MarchantOtp/>} />
@@ -62,7 +68,7 @@ const RoutePageNew = () => {
         <Route path='/marchant-resetnewPass/:token' element={<MarchantNewPass/>} />
         <Route  element={< DashboardPrivateRoute/>} children={[
 
-            <Route path='/home' element={< Home/>} />,
+            <Route path='/marchatHome' element={< Home/>} />,
             <Route path='/marchantCategory' element={<Categorypage/>}/>,
             <Route path='/viewCategory/:id' element={<CategoryView/>}/>,
             <Route path='/product' element={<ProductPage/>}/>,
@@ -70,13 +76,23 @@ const RoutePageNew = () => {
             <Route path='/marchantOrder' element={< MerchantOrders/>}/>
 
         ]}/>
+        <Route element={<UserPrivate2/>} children={[
+           <Route path='/homeone' element={< HomePage/>}/>,
+           <Route path='/aboutus' element={< AboutUs />}/>,
+           <Route path='/contact' element={< Contact />}/>,
+           <Route path='/viewcategoryandProduct/:id' element={<CategoryProducts/>}/>,
+           <Route path='/productView/:id' element={< ProductPage2/>}/>,
+
+        ]} />
+         
         <Route element={<UserPrivateRoute/>} children={[
           <Route path='/userHome' element={      <PrivaRoue/> }/>,
-        <Route path='/viewcategoryandProduct/:id' element={<CategoryProducts/>}/>,
-        <Route path='cartpage' element={<Cart/>} />,
         <Route path='/confirmoreder' element={< OrderConfirmation/>}/>,
+        <Route path='cartpage' element={<Cart/>} />,
         <Route path='/getAllorder' element={< UserOrderPage/>}/>,
         <Route path='/getOneOrder/:orderId' element={< ViewOrder/>}/>,
+        
+      
      
 
         ]}/>
